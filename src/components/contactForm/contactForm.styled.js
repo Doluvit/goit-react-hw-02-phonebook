@@ -2,41 +2,40 @@ import { Form, Field, ErrorMessage } from 'formik';
 import styled from 'styled-components';
 
 export const Container = styled(Form)`
-  margin: 0 auto;
   margin-bottom: 20px;
   padding: 20px;
   max-width: 50%;
+  border: solid 2px transparent;
+  border-radius: 5px;
+  box-shadow: var(--mainBoxShadow);
 `;
 
-export const Wrapper = styled.div`
+export const Section = styled.div`
   margin-bottom: 30px;
-  max-width: 100%;
-
+  
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-`;
+  `;
 
 export const Label = styled.label`
   margin-bottom: 10px;
   font-weight: 500;
   font-size: 24px;
-  color: var(--secondary);
-  text-shadow: var(--main-shadow);
-`;
+  color: var(--textColor);
+ `;
 
 export const Input = styled(Field)`
   padding: 5px 10px;
-  width: 100%;
 
   font-size: 24px;
-  color: var(--primary);
+  color: var(--textColor);
 
   background-color: transparent;
-  /* border: none; */
+  border: 2px solid transparent;
   border-radius: 5px;
-  box-shadow: var(--inset-shadow);
+  box-shadow: var(--insetBoxShadow);
 `;
 
 export const ErrorMsg = styled(ErrorMessage)`
@@ -44,24 +43,24 @@ export const ErrorMsg = styled(ErrorMessage)`
   color: red;
 `;
 
-export const Btn = styled.button`
+export const FormButton = styled.button`
   padding: 10px 25px;
 
   font-size: 24px;
   font-weight: 500;
-  color: black;
+  color: var(--textColor);
 
-  background-color: transparent;
+  background-color: var(--itemBackgroundColor);
   border-radius: 5px;
-  border: 1px solid black;
-  /* box-shadow: var(--main-shadow); */
+  border: 2px solid transparent;
+  box-shadow: var(--mainBoxShadow);
 
   cursor: pointer;
 
   transition: all 250ms ease-in-out;
 
   :hover {
-    color: var(--bg);
-    background-color: var(--accent);
+    color: var(--accentTextColor);
+    background-color: var(--mainBackgroundColor);
   }
 `;

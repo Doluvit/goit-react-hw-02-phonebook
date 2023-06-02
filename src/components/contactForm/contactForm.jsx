@@ -5,17 +5,15 @@ import {
   Container,
   Input,
   Label,
-  Wrapper,
+  Section,
   ErrorMsg,
-  Btn,
+  FormButton,
 } from './contactForm.styled.js';
-
-// const nanoid = customAlphabet('1234567890', 3);
 
 const schema = yup.object().shape({
   name: yup.string().required(),
-  number: yup.number().required(),
- });
+  number: yup.string().min(7).required(),
+});
 
 const inValues = {
   id: '',
@@ -23,10 +21,10 @@ const inValues = {
   number: '',
 };
 
-export const ContactForm = ({onSubmit}) => {
+export const ContactForm = ({ onSubmit }) => {
   const handleSubmit = (values, { resetForm }) => {
     const newContact = {
-      id: 'id-' + nanoid(),
+      id: nanoid(),
       name: values.name,
       number: values.number,
     };
@@ -41,20 +39,26 @@ export const ContactForm = ({onSubmit}) => {
         onSubmit={handleSubmit}
         validationSchema={schema}
       >
-        <Container>
-          <Wrapper>
+        <Container autoComplete="off">
+          <Section>
             <Label htmlFor="name">Name:</Label>
-            <Input name="name" type="text" id="name" />
+            <Input name="name" type="text" id="name" placeholder="Example: John Snow" />
             <ErrorMsg name="name" component="div" />
-          </Wrapper>
+          </Section>
 
-          <Wrapper>
+          <Section>
             <Label htmlFor="number">Number:</Label>
-            <Input name="number" type="tel" id="number" />
+            <Input
+              name="number"
+              type="tel"
+              id="number"
+              pattern="^\d{3}-\d{2}-\d{2}$"
+              placeholder="Example: 777-77-77"
+            />
             <ErrorMsg name="number" component="div" />
-          </Wrapper>
+          </Section>
 
-          <Btn type="submit">Add contact</Btn>
+          <FormButton type="submit">Add contact</FormButton>
         </Container>
       </Formik>
     </>

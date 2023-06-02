@@ -1,6 +1,9 @@
 import { Component } from 'react';
 import { ContactForm } from './contactForm/contactForm';
 import { ContactList } from './contactList/contactList';
+import { Filter } from './filter/filter';
+import { FormHeader, MainContainer } from './App.styled';
+
 
 class App extends Component {
   state = {
@@ -27,6 +30,11 @@ class App extends Component {
 }))
   }
 
+  onFilter = (event) => {
+    const { value } = event.currentTarget;
+    this.setState({ filter: value });
+  };
+
   render() {
     const { contacts, filter } = this.state;
     const filteredContacts = contacts.filter(contact =>
@@ -34,14 +42,14 @@ class App extends Component {
     );
 
     return (
-      <div>
-        <h1>Phonebook</h1>
+      <MainContainer>
+        <FormHeader>Phonebook</FormHeader>
         <ContactForm onSubmit={ this.handleSubmit} />
 
-        <h2>Contacts</h2>
-        {/* <Filter/> */}
+        <FormHeader>Contacts</FormHeader>
+        <Filter value={filter} onFilter={this.onFilter} />
         <ContactList contacts={filteredContacts} deleteContact={this.deleteContact}/>
-      </div>
+      </MainContainer>
     );
   }
 }
